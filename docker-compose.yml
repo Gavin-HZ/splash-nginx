@@ -1,0 +1,13 @@
+version: '2'
+services:
+  splash:
+    image: scrapinghub/splash
+    links:
+     - nginx
+    depends_on:
+     - nginx
+  nginx:
+    image: nginx:latest
+     
+    ports:
+    - "8051:8051"
