@@ -1,19 +1,37 @@
 version: '2.1'
 services:
-  splash:
+  splash1:
+    image: scrapinghub/splash
+    networks:
+      nginx-splash:
+        aliases:
+          - ns_splash_1
+  
+  splash2:
     image: scrapinghub/splash
    
     networks:
       nginx-splash:
         aliases:
-          - ns_splash
+          - ns_splash_2
+
+  splash3:
+    image: scrapinghub/splash
+    networks:
+      nginx-splash:
+        aliases:
+          - ns_splash_3
 
   nginx:
     build: .
     links:
-     - splash
+     - splash1
+     - splash2
+     - splash3
     depends_on:
-     - splash
+     - splash1
+     - splash2
+     - splash3
     ports:
       # - 8051:8051
       - "8052:8052"  
